@@ -104,7 +104,7 @@ public class ListaJugador {
             }while (nuevo.getEquipo().equals(""));
 
 
-            System.out.println("Introduzca la altura");
+            System.out.println("Introduzca la altura no puede medir mas de 2,30");
             do {
 
                 nuevo.setAltura(scanner.nextDouble());
@@ -114,13 +114,13 @@ public class ListaJugador {
 
 
 
-            System.out.println("Introduzca el peso");
+            System.out.println("Introduzca el peso, no puede pesar mass de 220 ");
             do {
 
                 nuevo.setPeso(scanner.nextDouble());
 
 
-            }while (nuevo.getPeso() > 0 && nuevo.getPeso() > 120);
+            }while (nuevo.getPeso() > 0 && nuevo.getPeso() > 220);
 
 
             System.out.println("Introduzca los goles");
