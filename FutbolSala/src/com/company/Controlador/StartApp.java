@@ -44,6 +44,7 @@ public class StartApp {
                 System.out.println("*  9 - buscar por nombre        *");
                 System.out.println("*  10 - editar jugador          *");
             }
+        System.out.println("*  0 - Salir                    *");
         System.out.println("*********************************");
         System.out.println("Opcion:");
         try {
@@ -59,8 +60,11 @@ public class StartApp {
     }
 
 
-
-
+    /**
+     * muestra la interfaz para pedir que es lo que quieres hacer.
+     * si no tiene valores solo nos permitira hacer las tres primera opciones,
+     * si tiene mas de una nos muestra todas las opciones
+     */
     public void inicioApp() {
 
         int opcion;
@@ -81,7 +85,7 @@ public class StartApp {
 
                         case 3:
 
-                            listaJugador.nuevoJugador();
+                            listaJugador.incluirNuevoJugador();
 
                             break;
                     }

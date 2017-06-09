@@ -42,7 +42,7 @@ public class ListaJugador {
     }
 
     /**
-     * Se encarga de mostrar cada jugador
+     * Se encarga de mostrar cada jugador del array
      */
     public void mostrarLista() {
 
@@ -56,9 +56,8 @@ public class ListaJugador {
 
     }
 
-
     /**
-     * se usa para introducir un jugador a mano pedidido por consola
+     * se usa para introducir un jugador a mano pedidido por consola, con todos los sus atributos
      */
     public Jugador nuevoJugador(){
 
@@ -66,90 +65,102 @@ public class ListaJugador {
 
         Jugador nuevo = new Jugador();
 
-    try{
-        System.out.println("Introduzca el nombre");
-        do {
-            nuevo.setNombre(scanner.nextLine().replaceAll("\\s+", " "));
+        try{
+            System.out.println("Introduzca el nombre");
+            do {
+                nuevo.setNombre(scanner.nextLine().replaceAll("\\s+", " "));
 
-        }while (nuevo.getNombre().equals(""));
-
-
-        System.out.println("Introduzca el apellido");
-        do {
-            nuevo.setApellido(scanner.nextLine().replaceAll("\\s+", " "));
-
-        }while (nuevo.getApellido().equals(""));
+            }while (nuevo.getNombre().equals(""));
 
 
+            System.out.println("Introduzca el apellido");
+            do {
+                nuevo.setApellido(scanner.nextLine().replaceAll("\\s+", " "));
 
-        System.out.println("Introduzca la posicion");
-        do {
-            nuevo.setPosicion(scanner.nextLine().replaceAll("\\s+", " "));
-
-        }while (nuevo.getPosicion().equals(""));
+            }while (nuevo.getApellido().equals(""));
 
 
 
-        System.out.println("Introduzca el dorsal");
+            System.out.println("Introduzca la posicion, debera ser ala,pivot,cierre o portero");
+            do {
+                nuevo.setPosicion(scanner.nextLine().replaceAll("\\s+", " "));
 
-        do {
-                    nuevo.setDorsal(scanner.nextInt());
-
-        }while (nuevo.getDorsal() < 0);
-
-
-        System.out.println("Introduzca el equipo");
-        do {
-            nuevo.setEquipo(scanner.nextLine().replaceAll("\\s+", " "));
-
-        }while (nuevo.getEquipo().equals(""));
+            }while (nuevo.getPosicion().equals(""));
 
 
-        System.out.println("Introduzca la altura");
-        do {
+
+            System.out.println("Introduzca el dorsal");
+
+            do {
+                nuevo.setDorsal(scanner.nextInt());
+
+            }while (nuevo.getDorsal() < 0);
+
+
+            System.out.println("Introduzca el equipo");
+            do {
+                nuevo.setEquipo(scanner.nextLine().replaceAll("\\s+", " "));
+
+            }while (nuevo.getEquipo().equals(""));
+
+
+            System.out.println("Introduzca la altura");
+            do {
 
                 nuevo.setAltura(scanner.nextDouble());
 
 
-        }while (nuevo.getAltura() > 0 && nuevo.getAltura() > 2.30);
+            }while (nuevo.getAltura() > 0 && nuevo.getAltura() > 2.30);
 
 
 
-        System.out.println("Introduzca el peso");
-        do {
+            System.out.println("Introduzca el peso");
+            do {
 
                 nuevo.setPeso(scanner.nextDouble());
 
 
-        }while (nuevo.getPeso() > 0 && nuevo.getPeso() > 120);
+            }while (nuevo.getPeso() > 0 && nuevo.getPeso() > 120);
 
 
-        System.out.println("Introduzca los goles");
-        do {
+            System.out.println("Introduzca los goles");
+            do {
 
                 nuevo.setGoles(scanner.nextInt());
-        }while (nuevo.getGoles() < 0 );
+            }while (nuevo.getGoles() < 0 );
 
 
 
-        return nuevo;
-    }catch ( InputMismatchException e){
-        System.out.println("eso no es un numero");
+            return nuevo;
+        }catch ( InputMismatchException e){
+            System.out.println("eso no es un numero");
+        }
+        return  null;
     }
-    return  null;
-    }
 
+
+
+    /**
+     * Se encarga de añadir un nuevo jugador en el array llamando al metodo que estta en Jugador
+     * si el valor es null volvera ha pedir el metodo
+     */
     public void incluirNuevoJugador(){
 
-        jugadores.add(nuevoJugador());
+            try {
+                jugadores.add(nuevoJugador());
+            }catch (NullPointerException e){
+                System.out.println("valor nulo");
+                incluirNuevoJugador();
+            }
 
-        guardarFichero();
+
+            guardarFichero();
 
     }
 
 
     /**
-     * elimina un jugador del array
+     * elimina un jugador del array usando el valor devuelto en el metodo buscar(), si el jugador no existe vuelve a pedir el metodo
      */
     public void eliminarJugador(){
 
@@ -168,22 +179,18 @@ public class ListaJugador {
     }
 
     /**
-     * edita al jugador elegido, edita todoa los atributos y elimino uno porque se crea un nuevo jugador al final
+     * edita al jugador buscado mediate el metodo buscar() para saber donde esta y con el metodo nuevoJugador() lo edito entero
+     * si el jugador no existe o el jugador esta mal editado volvera a iniciar el metodo
      */
     public void editarJugador(){
-
-
-        mostrarLista();
 
         try {
             System.out.println("jugador ha editar");
 
-            int index;
-
-
             jugadores.set(buscar(),nuevoJugador());
 
         }catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("Jugadoe no existe y no se puede encontrar");
             editarJugador();
         }
 
@@ -222,7 +229,7 @@ public class ListaJugador {
     }
 
     /**
-     * ordena por 2 parametros usado el comparator de forma estatico
+     * ordena por 2 parametros usado el comparator de forma estatico primero ordena por equipo y luego por goles
      *
      */
     public void ordenar2Parametros(){
@@ -276,7 +283,12 @@ public class ListaJugador {
      */
     public void buscarJugadorNombre(){
 
-        System.out.println(jugadores.get(buscar()));
+        try{
+            System.out.println(jugadores.get(buscar()));
+        }catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("El Jugador no existe, vuelva ha intentarlo");
+            buscarJugadorNombre();
+        }
 
     }
 
@@ -284,8 +296,8 @@ public class ListaJugador {
 
     // helper
     /**
-     * nos da el tamaño del array
-     * @return un entero on el tamaño
+     * nos da el tamaño del array, para que os mueste solo algunas opciones del gestor de tareas
+     * @return un entero con el tamaño del array
      */
     public int tamonoArray(){
 
@@ -295,8 +307,9 @@ public class ListaJugador {
 
 
     /**
-     * Busca un  jugador por nombre por nombre
-     * @return un alumno a buscar
+     * Busca un  jugador por nombre por nombre,nos va ha dar un entero con la posicionde donde se encuentra e l nombre
+     * , compruebo que exista y lo captura si no existe se vuelve a lanzar el metodo
+     * @return un int Con la posiscion
      */
     private int buscar() {
 

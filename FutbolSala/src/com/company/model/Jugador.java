@@ -136,6 +136,10 @@ public class Jugador implements Serializable,Comparable<Jugador>,Comparator<Juga
         return dorsal;
     }
 
+    /**
+     * comprueba que dorsal no sea negativo
+     * @param dorsal
+     */
     public void setDorsal(int dorsal) {
 
         if (dorsal < 0) {
@@ -157,6 +161,10 @@ public class Jugador implements Serializable,Comparable<Jugador>,Comparator<Juga
         return altura;
     }
 
+    /**
+     * comprueba que no sea negativo
+     * @param altura
+     */
     public void setAltura(double altura) {
 
 
@@ -173,6 +181,10 @@ public class Jugador implements Serializable,Comparable<Jugador>,Comparator<Juga
         return peso;
     }
 
+    /**
+     * comprueba que el peso no sea negativo
+     * @param peso
+     */
     public void setPeso(double peso) {
 
         if (peso < 0) {
@@ -217,7 +229,7 @@ public class Jugador implements Serializable,Comparable<Jugador>,Comparator<Juga
 
 
     /**
-     * ordena por nombres
+     * ordena por nombres de forma alfabetica
      *
      * @param o1 Jugador
      * @param o2 Jugador
@@ -241,7 +253,11 @@ public class Jugador implements Serializable,Comparable<Jugador>,Comparator<Juga
     }
 
 
-
+    /**
+     * se encarga de comparar jugadoes por el nombre
+     * @param obj tipo Object y lo transformamos a un tipo Jugador
+     * @return si los nombres son iguales devuelve un vrdadero
+     */
     @Override
     public boolean equals(Object obj) {
 
@@ -259,4 +275,6 @@ public class Jugador implements Serializable,Comparable<Jugador>,Comparator<Juga
 
         return Objects.equals(j.getNombre().toLowerCase(),this.getNombre().toLowerCase());
     }
+
+
 }
