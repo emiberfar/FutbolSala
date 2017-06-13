@@ -28,6 +28,7 @@ public class ListaJugador {
 
 
         try {
+            borrarNull();
             jugadores.add( new Jugador("Kike","Bned","pivot",8,"pozo murcia",1.88,80.2,20));
             jugadores.add( new Jugador("Raul","Campos","pivot",10,"pozo murcia",1.88,69.23,5));
             jugadores.add( new Jugador("Bebe"," ","cierre",4,"pozo murcia",1.73,60.2,10));
@@ -53,6 +54,7 @@ public class ListaJugador {
             i++;
 
         }
+        borrarNull();
 
     }
 
@@ -134,8 +136,9 @@ public class ListaJugador {
             return nuevo;
         }catch ( InputMismatchException e){
             System.out.println("eso no es un numero");
+            return  null;
         }
-        return  null;
+
     }
 
 
@@ -164,8 +167,7 @@ public class ListaJugador {
      */
     public void eliminarJugador(){
 
-
-        mostrarLista();
+        borrarNull();
 
         try {
             System.out.println("jugador ha borrar, introduzca su nombre");
@@ -185,9 +187,13 @@ public class ListaJugador {
     public void editarJugador(){
 
         try {
+
             System.out.println("jugador ha editar");
 
+            borrarNull();
+
             jugadores.set(buscar(),nuevoJugador());
+
 
         }catch (ArrayIndexOutOfBoundsException e){
             System.out.println("Jugadoe no existe y no se puede encontrar");
@@ -204,6 +210,7 @@ public class ListaJugador {
     public void ordenarAltura(){
 
 
+        borrarNull();
 
             Collections.sort(jugadores);
 
@@ -218,7 +225,7 @@ public class ListaJugador {
      */
     public void ordenarNombre(){
 
-
+        borrarNull();
 
         Collections.sort(jugadores, new Jugador());
 
@@ -233,6 +240,8 @@ public class ListaJugador {
      *
      */
     public void ordenar2Parametros(){
+
+        borrarNull();
         Collections.sort(jugadores,Jugador.ordenarPorEquiYGoles);
 
         mostrarLista();
@@ -334,6 +343,21 @@ public class ListaJugador {
     }
 
 
+    /**
+     * recorre el arry y busca si hay un nulo y lo borra
+     */
+    private void borrarNull(){
+
+        Iterator<Jugador> itJugador = jugadores.iterator();
+
+//        for (Flight flight : flights) {
+        while( itJugador.hasNext() ){
+            if( itJugador.next() == null ){
+                itJugador.remove();
+            }
+        }
+
+    }
 
 
 }

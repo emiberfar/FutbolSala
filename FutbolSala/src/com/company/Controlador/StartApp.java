@@ -31,21 +31,21 @@ public class StartApp {
 
 
 
-        System.out.println("*********************************");
-        System.out.println("*  1 - añadir jugadores         *");
-        System.out.println("*  2 - mostrar jugadores        *");
-        System.out.println("*  3 - nuevo jugador            *");
+        System.out.println("**************************************");
+        System.out.println("*  1 - cargar lista de jugdrores     *");
+        System.out.println("*  2 - mostrar jugadores             *");
+        System.out.println("*  3 - nuevo jugador                 *");
             if (listaJugador.tamonoArray() > 0) {
-                System.out.println("*  4 - ordenar por altura       *");
-                System.out.println("*  5 - ordenar por nombre       *");
-                System.out.println("*  6 - ordenar por 2 parametros *");
-                System.out.println("*  7 - elimina jugador          *");
-                System.out.println("*  8 - actualizar fichero       *");
-                System.out.println("*  9 - buscar por nombre        *");
-                System.out.println("*  10 - editar jugador          *");
+                System.out.println("*  4 - ordenar por altura            *");
+                System.out.println("*  5 - ordenar por nombre            *");
+                System.out.println("*  6 - ordenar por 2 parametros      *");
+                System.out.println("*  7 - elimina jugador               *");
+                System.out.println("*  8 - actualizar fichero            *");
+                System.out.println("*  9 - buscar por nombre             *");
+                System.out.println("*  10 - editar jugador               *");
             }
-        System.out.println("*  0 - Salir                    *");
-        System.out.println("*********************************");
+        System.out.println("*  0 - Salir                         *");
+        System.out.println("**************************************");
         System.out.println("Opcion:");
         try {
 
